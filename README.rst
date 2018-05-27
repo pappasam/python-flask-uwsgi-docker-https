@@ -21,6 +21,9 @@ AFAIK, you'll need the following system dependencies to run:
    # Follow instructions here to install docker
    # https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce
 
+I assume you're running an Ubuntu-based Linux distribution. If not, the
+examples may require some additional work on your end.
+
 Run instructions
 ================
 
