@@ -12,7 +12,7 @@ clean:
 #######################################################################
 
 .PHONY: ca-certificates
-ca-certificates: instance/localhost.crt
+ca-certificates: instance/localhost.key instance/localhost.crt
 
 .PRECIOUS: %.key
 %.key:
