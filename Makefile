@@ -1,7 +1,35 @@
 IMAGE_BASE = test-https
 
 .PHONY: all
-all: instance/localhost.crt build run
+all: ca-certificates build run
+
+.PHONY: clean
+clean:
+	- rm instance/localhost.*
+
+#######################################################################
+# OpenSSL: Generate certificates
+#######################################################################
+
+.PHONY: ca-certificates
+ca-certificates: instance/localhost.crt
+
+.PRECIOUS: %.key
+%.key:
+	openssl genrsa -out $@ 2048
+
+.PRECIOUS: %.csr
+%.csr: %.key
+	openssl req -new -key $< -out $@
+
+.PRECIOUS: %.crt
+%.crt: %.csr %.key
+	openssl x509 \
+		-req \
+		-days 365 \
+		-in $*.csr \
+		-signkey $*.key \
+		-out $@
 
 #######################################################################
 # Docker
@@ -18,21 +46,3 @@ run:
 .PHONY: build
 build:
 	docker build -t $(IMAGE_BASE):base .
-
-#######################################################################
-# OpenSSL: Generate certificates
-#######################################################################
-
-instance/localhost.key:
-	openssl genrsa -out instance/localhost.key 2048
-
-instance/localhost.csr: instance/localhost.key
-	openssl req -new -key instance/localhost.key -out instance/localhost.csr
-
-instance/localhost.crt: instance/localhost.csr instance/localhost.key
-	openssl x509 \
-		-req \
-		-days 365 \
-		-in instance/localhost.csr \
-		-signkey instance/localhost.key \
-		-out instance/localhost.crt
