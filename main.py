@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-'''The main module'''
+'''Simple flask application'''
 
 from flask import Flask
 
