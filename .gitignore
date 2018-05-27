@@ -1,0 +1,21 @@
+# Python
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.tox/
+.cache
+.coverage
+docs/_build/
+*.egg-info/
+.installed.cfg
+*.egg
+.mypy_cache/
+.pytest_cache/
+*.coverage*
+
+# Vim
+*.swp
+
+# C
+*.so
