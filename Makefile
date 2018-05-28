@@ -16,17 +16,22 @@ ca-certificates: instance/localhost.key instance/localhost.crt
 
 .PRECIOUS: %.key
 %.key:
-	openssl genrsa -out $@ 2048
+	openssl genrsa \
+		-out $@ \
+		2048
 
 .PRECIOUS: %.csr
 %.csr: %.key
-	openssl req -new -key $< -out $@
+	openssl req \
+		-subj \
+		"/C=US/ST=New York/L=New York/O=SamOrg/CN=samuel.roeca@gmail.com" \
+		-new -key $< \
+		-out $@
 
 .PRECIOUS: %.crt
 %.crt: %.csr %.key
 	openssl x509 \
-		-req \
-		-days 365 \
+		-req -days 365 \
 		-in $*.csr \
 		-signkey $*.key \
 		-out $@
