@@ -31,6 +31,8 @@ COPY uwsgi.ini .
 
 RUN pip install -r requirements.txt
 
+EXPOSE 5000
+
 USER $USERNAME
 
 #######################################################################
@@ -47,6 +49,6 @@ ENTRYPOINT [ "uwsgi", "--ini", "uwsgi.ini", "--callable", "APP_RICH_MAN"]
 
 #######################################################################
 
-# FROM nginx:1.14-alpine-perl
+FROM nginx:1.14-alpine-perl as nginx
 
-
+COPY nginx.conf /etc/nginx/nginx.conf
