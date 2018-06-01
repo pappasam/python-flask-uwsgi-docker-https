@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  hello-world:
+    build:
+      context: '.'
+      target: hello-world
+    ports:
+      - "5000:5000"
+  rich-man:
+    build:
+      context: '.'
+      target: rich-man
+    ports:
+      - "5001:5000"

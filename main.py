@@ -3,15 +3,28 @@
 
 from flask import Flask
 
-APP = Flask(__name__)
 
-@APP.route('/')
-def index():
-    return "hello"
+APP_HELLO_WORLD = Flask(__name__)
 
-@APP.route('/world')
+
+@APP_HELLO_WORLD.route('/hello')
+def hello():
+    return 'hello'
+
+
+@APP_HELLO_WORLD.route('/world')
 def world():
-    return "hello, world"
+    return 'world'
 
-if __name__ == '__main__':
-    APP.run()
+
+APP_RICH_MAN = Flask(__name__)
+
+
+@APP_RICH_MAN.route('/rich')
+def rich():
+    return 'rich'
+
+
+@APP_RICH_MAN.route('/man')
+def man():
+    return 'man'
