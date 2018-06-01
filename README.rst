@@ -20,6 +20,7 @@ AFAIK, you'll need the following system dependencies to run:
    sudo apt install openssl
    # Follow instructions here to install docker
    # https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce
+   pip install docker-compose
 
 I assume you're running an Ubuntu-based Linux distribution. If not, the
 examples may require some additional work on your end.
