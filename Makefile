@@ -42,12 +42,14 @@ ca-certificates: instance/localhost.key instance/localhost.crt
 
 .PHONY: run
 run:
-	docker run \
-		--rm \
-		--net="host" \
-		-p 8443:8443 \
-		$(IMAGE_BASE):base
+	docker-compose up
+	# docker run \
+	# 	--rm \
+	# 	--net="host" \
+	# 	-p 8443:8443 \
+	# 	$(IMAGE_BASE):base
 
 .PHONY: build
 build:
-	docker build -t $(IMAGE_BASE):base .
+	# docker build -t $(IMAGE_BASE):base .
+	docker-compose build
